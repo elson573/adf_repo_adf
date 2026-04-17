@@ -563,7 +563,7 @@
 						]
 					},
 					{
-						"name": "Lookup1",
+						"name": "lookup_for_snowflake",
 						"type": "Lookup",
 						"dependsOn": [],
 						"policy": {
@@ -596,7 +596,7 @@
 						"type": "ForEach",
 						"dependsOn": [
 							{
-								"activity": "Lookup1",
+								"activity": "lookup_for_snowflake",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -605,7 +605,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"items": {
-								"value": "@activity('Lookup1').output.value",
+								"value": "@activity('lookup_for_snowflake').output.value",
 								"type": "Expression"
 							},
 							"activities": [
