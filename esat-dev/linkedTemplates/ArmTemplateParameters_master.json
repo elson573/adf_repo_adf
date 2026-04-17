@@ -1,0 +1,66 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "esat-dev"
+		},
+		"AzureDatabricks1_accessToken": {
+			"value": ""
+		},
+		"AzureSqlDatabase_elson_adfpro_password": {
+			"value": ""
+		},
+		"Sftp_elson_password": {
+			"value": ""
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"value": "0408-170236-81b46pwb"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://snwdev.vault.azure.net/"
+		},
+		"AzureSqlDatabase_elson_adfpro_properties_typeProperties_server": {
+			"value": "elsat573.database.windows.net"
+		},
+		"AzureSqlDatabase_elson_adfpro_properties_typeProperties_database": {
+			"value": "elsat573"
+		},
+		"AzureSqlDatabase_elson_adfpro_properties_typeProperties_userName": {
+			"value": "elson573"
+		},
+		"LS_DEV_ADLS1_properties_typeProperties_url": {
+			"value": "https://elsatdev.dfs.core.windows.net/"
+		},
+		"LS_DEV_SNOWFLAKE1_properties_typeProperties_database": {
+			"value": "ELSON_ETL_DEV"
+		},
+		"LS_DEV_SNOWFLAKE2_properties_typeProperties_baseUrl": {
+			"value": "https://snwdev.vault.azure.net/"
+		},
+		"Sftp_elson_properties_typeProperties_host": {
+			"value": "elsatdev.blob.core.windows.net"
+		},
+		"Sftp_elson_properties_typeProperties_userName": {
+			"value": "elsatdev.elson"
+		},
+		"Snowflake1_properties_typeProperties_database": {
+			"value": "Elson_Etl_dev"
+		},
+		"linkedService1_properties_typeProperties_serviceEndpoint": {
+			"value": "https://elsatdev.blob.core.windows.net/"
+		},
+		"ls_staging_snow_sasUri": {
+			"value": ""
+		},
+		"sinkAzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://elsatdev.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
