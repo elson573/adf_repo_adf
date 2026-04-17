@@ -98,7 +98,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Lookup1').output.value",
+						"value": "@activity('lookup_for_snowflake').output.value",
 						"type": "Expression"
 					},
 					"activities": [
