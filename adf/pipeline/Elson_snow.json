@@ -57,7 +57,7 @@
 				]
 			},
 			{
-				"name": "Lookup1",
+				"name": "lookup_for_snowflake",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -89,7 +89,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "lookup_for_snowflake",
 						"dependencyConditions": [
 							"Succeeded"
 						]
