@@ -1,0 +1,9 @@
+{
+	"name": "esat-dev",
+	"location": "southindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d47c3c65-dc36-45f2-bbc4-eb62edf77774",
+		"tenantId": "45cc912d-8832-48b4-b7e6-920361ae6400"
+	}
+}

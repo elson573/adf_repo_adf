@@ -1,0 +1,11 @@
+{
+	"name": "LS_DEV_ADLS1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://elsatdev.dfs.core.windows.net/"
+		}
+	}
+}

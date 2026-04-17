@@ -1,0 +1,126 @@
+{
+	"name": "Sathya_snow",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup_1snow",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SnowflakeV2Source",
+						"query": "SELECT TABLE_SCHEMA, TABLE_NAME\nFROM ELSON_ETL_DEV.INFORMATION_SCHEMA.TABLES\nWHERE TABLE_TYPE ='BASE TABLE'\nAND TABLE_SCHEMA = 'PUBLIC';",
+						"exportSettings": {
+							"type": "SnowflakeExportCopyCommand"
+						},
+						"treatDecimalAsString": false
+					},
+					"dataset": {
+						"referenceName": "DS_DEV_SNOWFLAKE1",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Loop_foreach",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup_1snow",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup_1snow').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copysnow",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SnowflakeV2Source",
+									"query": {
+										"value": "@concat('select * from ELSON_ETL_DEV.', item().TABLE_SCHEMA, '.', item().TABLE_NAME)",
+										"type": "Expression"
+									},
+									"exportSettings": {
+										"type": "SnowflakeExportCopyCommand"
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings",
+										"copyBehavior": "PreserveHierarchy"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".csv"
+									}
+								},
+								"enableStaging": true,
+								"stagingSettings": {
+									"linkedServiceName": {
+										"referenceName": "ls_staging_snow",
+										"type": "LinkedServiceReference"
+									},
+									"path": "elsat-dev/elsat_silver"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_DEV_SNOWFLAKE1",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_csv_flatfile1",
+									"type": "DatasetReference",
+									"parameters": {
+										"folderPath": {
+											"value": "@concat(\n    'elsat-dev/snow_pro_databricks/bronze/',\n    item().TABLE_SCHEMA,\n    '/',\n    item().TABLE_NAME\n)",
+											"type": "Expression"
+										},
+										"fileName": {
+											"value": "@concat(\n    item().TABLE_NAME,\n    '_',\n    formatDateTime(utcNow(),'yyyyMMdd_HHmmss')\n    )",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-04-12T18:02:56Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,25 @@
+{
+	"name": "Snowflake1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SnowflakeV2",
+		"typeProperties": {
+			"authenticationType": "Basic",
+			"accountIdentifier": "MVFXGLG-HR48526",
+			"user": "SAHYAELSON",
+			"database": "Elson_Etl_dev",
+			"warehouse": "compute_wh",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "snowflake-password"
+			},
+			"useUtcTimestamps": false
+		},
+		"version": "1.1"
+	}
+}
